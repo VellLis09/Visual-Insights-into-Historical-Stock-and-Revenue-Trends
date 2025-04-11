@@ -4,11 +4,11 @@ Final Project
 # Extracting Tesla Stock Data Using yfinance
 Reset the index, save, and display the first five rows of the tesla_data dataframe using the head function. 
 
-* import yfinance as yf
-* import pandas as pd
-* import requests
-* from bs4 import BeautifulSoup
-* import plotly.graph_objs as go
+'import yfinance as yf
+import pandas as pd
+import requests
+from bs4 import BeautifulSoup
+import plotly.graph_objs as go'
 
 tesla = yf.Ticker("TSLA")
 tesla_history = tesla.history(period="max")
