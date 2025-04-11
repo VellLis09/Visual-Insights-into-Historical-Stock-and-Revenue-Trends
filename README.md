@@ -12,7 +12,8 @@ Reset the index, save, and display the first five rows of the tesla_data datafra
 
 tesla = yf.Ticker("TSLA")
 tesla_history = tesla.history(period="max")
-tesla_data = tesla_history.reset_index()
+tesla_data.reset_index(inplace=True)
+tesla_data.head()
 
 
 # Extracting Tesla Revenue Data Using Webscraping
