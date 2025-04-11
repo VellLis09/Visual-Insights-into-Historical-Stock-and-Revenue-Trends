@@ -1,10 +1,11 @@
 # Analyzing Historical Stock/Revenue Data and Building a Dashboard
 Final Project
 
-# Extracting Tesla Stock Data Using yfinance
-Reset the index, save, and display the first five rows of the tesla_data dataframe using the head function. 
+## Extracting Tesla Stock Data Using yfinance
+Reset the index, save, and display the first five rows of the tesla_data dataframe using the head function.
 
-``import yfinance as yf
+```python
+import yfinance as yf
 import pandas as pd
 import requests
 from bs4 import BeautifulSoup
@@ -12,11 +13,12 @@ import plotly.graph_objs as go
 
 tesla = yf.Ticker("TSLA")
 tesla_history = tesla.history(period="max")
+tesla_data = tesla_history
 tesla_data.reset_index(inplace=True)
-tesla_data.head()``
+tesla_data.head()
 
 
-# Extracting Tesla Revenue Data Using Webscraping
+## Extracting Tesla Revenue Data Using Webscraping
 Display the last five rows of the tesla_revenue dataframe using the tail function. Upload a screenshot of the results.
 
 url_tesla = "https://www.macrotrends.net/stocks/charts/TSLA/tesla/revenue"
@@ -34,16 +36,15 @@ df_tesla_revenue["Revenue"] = df_tesla_revenue["Revenue"].str.replace("$", "").s
 df_tesla_revenue = df_tesla_revenue[df_tesla_revenue["Revenue"].notna()]
 
 # Extracting GameStop Stock Data Using yfinance
-Reset the index, save, and display the first five rows of the gme_data dataframe using the head function. 
 
-``gme = yf.Ticker("GME")
+gme = yf.Ticker("GME")
 gme_history = gme.history(period="max")
-gme_data = gme_history.reset_index()``
+gme_data = gme_history.reset_index()
 
 # Extracting GameStop Revenue Data Using Webscraping
 Display the last five rows of the gme_revenue dataframe using the tail function.
 
-``url_gme = "https://www.macrotrends.net/stocks/charts/GME/gamestop/revenue"
+url_gme = "https://www.macrotrends.net/stocks/charts/GME/gamestop/revenue"
 html_gme = requests.get(url_gme).text
 soup_gme = BeautifulSoup(html_gme, "html.parser")
 tables_gme = soup_gme.find_all("table")
@@ -55,12 +56,12 @@ for table in tables_gme:
 
 df_gme_revenue.columns = ["Date", "Revenue"]
 df_gme_revenue["Revenue"] = df_gme_revenue["Revenue"].str.replace("$", "").str.replace(",", "").astype(float)
-df_gme_revenue = df_gme_revenue[df_gme_revenue["Revenue"].notna()]``
+df_gme_revenue = df_gme_revenue[df_gme_revenue["Revenue"].notna()]
 
 # Tesla Stock and Revenue Dashboard
 Use the make_graph function to graph the Tesla Stock Data, also provide a title for the graph.
 
-``fig_tesla = go.Figure()
+`fig_tesla = go.Figure()
 
 fig_tesla.add_trace(go.Scatter(x=tesla_data["Date"], y=tesla_data["Close"],
                                name="Tesla Stock Price"))
@@ -76,12 +77,12 @@ fig_tesla.update_layout(
     width=1000,
     height=500
 )
-fig_tesla.show()``
+fig_tesla.show()
 
 # GameStop Stock and Revenue Dashboard
 Use the make_graph function to graph the GameStop Stock Data, also provide a title for the graph.
 
-``fig_gme = go.Figure()
+fig_gme = go.Figure()
 
 fig_gme.add_trace(go.Scatter(x=gme_data["Date"], y=gme_data["Close"],
                              name="GameStop Stock Price"))
@@ -97,4 +98,4 @@ fig_gme.update_layout(
     width=1000,
     height=500
 )
-fig_gme.show()``
+fig_gme.show()
